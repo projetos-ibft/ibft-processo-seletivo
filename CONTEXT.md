@@ -509,18 +509,20 @@ O agente usa estes GIDs para mover tarefas entre seções via API.
 
 | Seção | GID |
 |---|---|
-| 👤 Candidaturas Recebidas | `1209988312496749` |
-| 🔍 Em Análise (IA) | A obter via API |
-| 🔍 Em Análise (Humano) | A obter via API |
-| 🗣️ Contato Inicial | A obter via API |
-| 🖋️ Desafio | A obter via API |
-| 🖋️ Avaliar Desafio | A obter via API |
-| 📞 Entrevista | A obter via API |
-| ⏳ Em Decisão Final | A obter via API |
-| 📩 Aprovado (Aguardando Início) | A obter via API |
-| 🧭 Onboarding / Treinamento | A obter via API |
-| 🎉 Contratação Concluída | A obter via API |
-| ❌ Candidatos Recusados | A obter via API |
+| 👤 Candidaturas Recebidas | `1209988064308563` |
+| 🔍 Em Análise (IA) | `1209988064308567` |
+| 🔍 Em Análise (Humano) | `1215165209166187` |
+| 🗣️Contato inicial | `1209988064308570` |
+| 🖋️ Desafio | `1209988064308571` |
+| 🖋️ Avaliar Desafio | `1210056677721076` |
+| 📞 Entrevista | `1209988064308572` |
+| ⏳ Em Decisão Final | `1215165209166197` |
+| 📩 Aprovado (Aguardando Início) | `1215165140295358` |
+| 🧭 Onboarding - Treinamento | `1209988064308574` |
+| 🎉 Contratação Concluída | `1210098291964236` |
+| ❌Candidatos recusados | `1209995110335850` |
+
+**Nota:** Os nomes acima são exatamente como retornados pela API do Asana (preserva variações de espaço/capitalização das seções reais). O código deve usar `config/asana-ids.json` como fonte canônica — esta tabela é apenas referência rápida.
 
 **Nota:** os GIDs das seções são obtidos com uma única chamada no setup do projeto:
 ```

@@ -1,4 +1,18 @@
 {
   "_comentario": "Arquivo gerado por scripts/setup.js. Não editar manualmente. Contém os GIDs das seções do Kanban do projeto 👥 Kanban Processo Seletivo (1209988064308562).",
-  "sections": {}
+  "sections": {
+    "👤 Candidaturas Recebidas": "1209988064308563",
+    "🔍 Em Análise (IA)": "1209988064308567",
+    "🔍 Em Análise (Humano)": "1215165209166187",
+    "🗣️Contato inicial": "1209988064308570",
+    "🖋️ Desafio": "1209988064308571",
+    "🖋️ Avaliar Desafio": "1210056677721076",
+    "📞 Entrevista": "1209988064308572",
+    "⏳ Em Decisão Final": "1215165209166197",
+    "📩 Aprovado (Aguardando Início)": "1215165140295358",
+    "🧭 Onboarding - Treinamento": "1209988064308574",
+    "🎉 Contratação Concluída": "1210098291964236",
+    "❌Candidatos recusados": "1209995110335850"
+  },
+  "updated_at": "2026-05-27T23:41:29.513Z"
 }

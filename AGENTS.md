@@ -160,7 +160,7 @@ POST /webhooks                            # Registrar webhook
 - Aba de dashboard: `📈 Dashboard` (atualizada via Apps Script, não pelo agente)
 
 ### Anthropic API
-- Modelo: `claude-sonnet-4-20250514`
+- Modelo: `claude-sonnet-4-6`
 - Max tokens: 2.000 para triagem, 3.000 para relatório
 - Temperatura: 0.2 (respostas consistentes e previsíveis)
 - O retorno da triagem deve ser sempre JSON válido — usar system prompt para reforçar isso
@@ -242,7 +242,7 @@ POST /webhooks                            # Registrar webhook
 - O campo [Etapas] RH deve sempre refletir a seção atual da tarefa
 
 **Sobre o modelo:**
-- Sempre usar claude-sonnet-4-20250514 para análise
+- Sempre usar claude-sonnet-4-6 para análise
 - O retorno da triagem deve ser sempre JSON — rejeitar e logar se não for parseável
 - Temperatura 0.2 — não alterar sem aprovação
 
