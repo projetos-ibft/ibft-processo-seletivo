@@ -1,0 +1,18 @@
+{
+  "name": "ibft-processo-seletivo",
+  "version": "0.1.0",
+  "description": "Agente automatizado de triagem de candidatos e geração de relatórios para o processo seletivo do IBFT e do Onion (rodada mai-26, escritório SJC).",
+  "main": "src/webhook.js",
+  "scripts": {
+    "start": "node src/webhook.js",
+    "setup": "node scripts/setup.js",
+    "setup:validate": "node scripts/setup.js --validate",
+    "relatorio": "node src/relatorio.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "private": true,
+  "author": "IBFT / Onion",
+  "license": "UNLICENSED"
+}
