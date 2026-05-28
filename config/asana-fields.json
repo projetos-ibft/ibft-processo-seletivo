@@ -1,0 +1,39 @@
+{
+  "_comentario": "GIDs de campos personalizados e mapeamento de destinos do Kanban. Derivado de CONTEXT.md secao 6 e de config/asana-ids.json. Atualizar manualmente se a estrutura do Asana mudar.",
+  "campos": {
+    "etapas_rh": "1210056880459304",
+    "motivo_recusa": "1215180083394179",
+    "status_rh": "1215179950182596",
+    "data_entrevista": "1215179792212211"
+  },
+  "status_rh_opcoes": {
+    "Currículo não lido": "1215179950182597"
+  },
+  "motivo_recusa_opcoes": {
+    "Pretensão acima do budget": "1215180083394180",
+    "Sem disponibilidade presencial": "1215180083394181",
+    "Portfólio ou requisito técnico ausente": "1215180083394182",
+    "Perfil fora do esperado": "1215180083394183",
+    "Sem resposta ao contato": "1215180083394184",
+    "Desafio não entregue": "1215180083394185",
+    "Desafio ou entrevista reprovado": "1215180083394186",
+    "Desistiu do processo": "1215180083394187"
+  },
+  "destinos": {
+    "em_analise_ia": {
+      "_nome_secao": "🔍 Em Análise (IA)",
+      "secao_gid": "1209988064308567",
+      "etapa_rh_gid": "1210056880459308"
+    },
+    "em_analise_humano": {
+      "_nome_secao": "🔍 Em Análise (Humano)",
+      "secao_gid": "1215165209166187",
+      "etapa_rh_gid": "1215165209166188"
+    },
+    "recusados": {
+      "_nome_secao": "❌Candidatos recusados",
+      "secao_gid": "1209995110335850",
+      "etapa_rh_gid": "1210056880459317"
+    }
+  }
+}
