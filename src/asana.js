@@ -116,6 +116,13 @@ async function deleteWebhook(webhookGid) {
   await getClient().delete(`/webhooks/${webhookGid}`);
 }
 
+async function getTaskStories(taskGid) {
+  const { data } = await getClient().get(`/tasks/${taskGid}/stories`, {
+    params: { opt_fields: 'created_at,resource_subtype,text' },
+  });
+  return data.data;
+}
+
 module.exports = {
   getMe,
   getProject,
@@ -131,4 +138,5 @@ module.exports = {
   createWebhook,
   getWebhooks,
   deleteWebhook,
+  getTaskStories,
 };

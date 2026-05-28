@@ -78,9 +78,33 @@ async function updateRow(range, values) {
   return data;
 }
 
+// Escreve uma matriz 2D em um range.
+async function updateValues(range, values2D) {
+  const sheets = await getSheetsClient();
+  const { data } = await sheets.spreadsheets.values.update({
+    spreadsheetId: getSheetId(),
+    range,
+    valueInputOption: 'USER_ENTERED',
+    requestBody: { values: values2D },
+  });
+  return data;
+}
+
+// Escreve vários ranges de uma vez. updates: [{ range, values: [[...]] }]
+async function batchUpdate(updates) {
+  const sheets = await getSheetsClient();
+  const { data } = await sheets.spreadsheets.values.batchUpdate({
+    spreadsheetId: getSheetId(),
+    requestBody: { valueInputOption: 'USER_ENTERED', data: updates },
+  });
+  return data;
+}
+
 module.exports = {
   getSheetMetadata,
   readRange,
   appendRow,
   updateRow,
+  updateValues,
+  batchUpdate,
 };

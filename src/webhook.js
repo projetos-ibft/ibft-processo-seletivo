@@ -9,9 +9,11 @@ require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 const fs = require('fs');
 const crypto = require('crypto');
 const express = require('express');
+const cron = require('node-cron');
 const asana = require('./asana');
 const { Queue } = require('./queue');
 const triagem = require('./triagem');
+const relatorio = require('./relatorio');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const SECRET_FILE = path.join(PROJECT_ROOT, 'config', '.webhook-secret');
@@ -128,16 +130,41 @@ app.post('/webhook/asana', (req, res) => {
   }
 });
 
-// Endpoint manual de relatório — implementação completa na Fase 4.
-app.post('/relatorio', (_req, res) => {
-  res.status(501).json({ erro: 'Relatório ainda não implementado (Fase 4).' });
-});
-app.get('/relatorio', (_req, res) => {
-  res.status(501).json({ erro: 'Relatório ainda não implementado (Fase 4).' });
-});
+// Endpoint manual de relatório (Função 2). Aciona o mesmo fluxo do cron e
+// retorna o resumo narrativo (usado pelo Apps Script da planilha, por ex.).
+async function handleRelatorio(_req, res) {
+  try {
+    console.log('[RELATÓRIO] Acionado manualmente via endpoint.');
+    const r = await relatorio.runRelatorio({ dryRun: false });
+    res.status(200).json({
+      ok: true,
+      resumo: r.resumo,
+      visaoGeral: r.visaoGeral,
+      gargalos: r.gargalos,
+    });
+  } catch (e) {
+    console.error(`[RELATÓRIO] Erro no endpoint: ${e.message}`);
+    res.status(500).json({ ok: false, erro: e.message });
+  }
+}
+app.post('/relatorio', handleRelatorio);
+app.get('/relatorio', handleRelatorio);
+
+// Cron diário às 7h30 (horário de Brasília).
+cron.schedule(
+  '30 7 * * *',
+  () => {
+    console.log('[CRON] Disparando relatório das 7h30 (America/Sao_Paulo)...');
+    relatorio
+      .runRelatorio({ dryRun: false })
+      .catch(e => console.error(`[CRON] Erro no relatório: ${e.message}`));
+  },
+  { timezone: 'America/Sao_Paulo' }
+);
 
 app.listen(PORT, () => {
   console.log(`[WEBHOOK] Servidor ouvindo na porta ${PORT}`);
   console.log(`[WEBHOOK] Secret: ${hookSecret ? 'carregado' : 'aguardando handshake'}`);
   console.log(`[WEBHOOK] Candidaturas Recebidas GID: ${CANDIDATURAS_GID}`);
+  console.log('[CRON] Relatório diário agendado para 07:30 (America/Sao_Paulo)');
 });
