@@ -29,6 +29,11 @@ if (!CANDIDATURAS_GID) {
 }
 
 function loadSecret() {
+  // Em produção (Railway), WEBHOOK_SECRET pode ser definido como env var para
+  // sobreviver a redeploys (filesystem é efêmero). Localmente, usa o arquivo.
+  if (process.env.WEBHOOK_SECRET && process.env.WEBHOOK_SECRET.trim()) {
+    return process.env.WEBHOOK_SECRET.trim();
+  }
   try {
     return fs.readFileSync(SECRET_FILE, 'utf8').trim() || null;
   } catch {

@@ -26,13 +26,22 @@ function getSheetId() {
   return id;
 }
 
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
+
+// Autentica via JSON inline (env GOOGLE_SERVICE_ACCOUNT_JSON, usado no Railway)
+// ou via arquivo apontado por GOOGLE_SERVICE_ACCOUNT_KEY (usado localmente).
+function buildAuth() {
+  const inline = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+  if (inline && inline.trim()) {
+    const credentials = JSON.parse(inline);
+    return new google.auth.GoogleAuth({ credentials, scopes: SCOPES });
+  }
+  return new google.auth.GoogleAuth({ keyFile: resolveKeyPath(), scopes: SCOPES });
+}
+
 async function getSheetsClient() {
   if (sheetsClient) return sheetsClient;
-  const auth = new google.auth.GoogleAuth({
-    keyFile: resolveKeyPath(),
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-  sheetsClient = google.sheets({ version: 'v4', auth });
+  sheetsClient = google.sheets({ version: 'v4', auth: buildAuth() });
   return sheetsClient;
 }
 
