@@ -98,6 +98,24 @@ async function getProjectTasks(projectGid, optFields = null) {
   return tasks;
 }
 
+async function createWebhook(resourceGid, targetUrl) {
+  const { data } = await getClient().post('/webhooks', {
+    data: { resource: resourceGid, target: targetUrl },
+  });
+  return data.data;
+}
+
+async function getWebhooks(workspaceGid) {
+  const { data } = await getClient().get('/webhooks', {
+    params: { workspace: workspaceGid, limit: 100 },
+  });
+  return data.data;
+}
+
+async function deleteWebhook(webhookGid) {
+  await getClient().delete(`/webhooks/${webhookGid}`);
+}
+
 module.exports = {
   getMe,
   getProject,
@@ -110,4 +128,7 @@ module.exports = {
   moveTaskToSection,
   updateCustomFieldEnum,
   getProjectTasks,
+  createWebhook,
+  getWebhooks,
+  deleteWebhook,
 };

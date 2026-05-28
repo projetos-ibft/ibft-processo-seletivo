@@ -68,8 +68,12 @@ Resposta de fit cultural:
 
 ### Passo 1 — Verificar requisitos eliminatórios (D1)
 
-Analise cada critério abaixo. Se QUALQUER um falhar, o candidato é reprovado
-diretamente com score nulo, independente de qualquer outra informação.
+Analise cada critério abaixo. Se QUALQUER um falhar, marque `eliminado_d1` = true
+e descreva em `motivo_d1` o critério específico que falhou. A eliminação em D1 tem
+prioridade na DECISÃO final (o candidato será reprovado), mas você deve MESMO ASSIM
+calcular a pontuação completa no Passo 2 — isso ajuda o recrutador a enxergar a
+qualidade real do candidato (útil, por exemplo, em eliminações por pretensão
+salarial que podem ser negociáveis).
 
 Critérios eliminatórios:
 1. Disponibilidade presencial em SJC: o candidato declarou que tem disponibilidade?
@@ -77,22 +81,11 @@ Critérios eliminatórios:
 3. Pretensão salarial: R$ {pretensao} está acima de R$ {budget_maximo}?
 4. Requisito técnico mínimo: {requisito_tecnico_minimo} — o candidato atende com base no currículo e respostas?
 
-Se reprovado em D1, retorne exatamente este JSON:
-
-{
-  "resultado": "REPROVADO_D1",
-  "motivo_d1": "[descreva o critério específico que falhou em 1 linha]",
-  "motivo_recusa_asana": "[um dos 8 valores exatos: Pretensão acima do budget | Sem disponibilidade presencial | Portfólio ou requisito técnico ausente]",
-  "score_total": null,
-  "score_d2": null,
-  "score_d3": null,
-  "score_d4": null,
-  "comentario_asana": "[TRIAGEM IA] Score: —/10\nResultado: Reprovado\n\nMotivo principal: [motivo em 1 linha direta]\nD1 Eliminatório: [critério que falhou]"
-}
+Se nenhum critério falhar, `eliminado_d1` = false e `motivo_d1` = null.
 
 ---
 
-### Passo 2 — Pontuar (apenas se passou em todos os critérios de D1)
+### Passo 2 — Pontuar (SEMPRE, mesmo que eliminado em D1)
 
 **D2 — Qualidade das respostas técnicas (0 a 4 pontos)**
 
@@ -127,8 +120,10 @@ Score total = D2 + D3 + D4 (máximo 10)
 
 ### Passo 3 — Determinar resultado
 
-- Score >= 7: APROVADO — avança para análise humana
-- Score <= 6: REPROVADO — encaminhar para candidatos recusados
+Aplique nesta ordem:
+- Se `eliminado_d1` = true → `resultado` = "REPROVADO" (a eliminação tem prioridade, mesmo que o score seja alto)
+- Senão, se `score_total` >= 7 → `resultado` = "APROVADO" — avança para análise humana
+- Senão (`score_total` <= 6) → `resultado` = "REPROVADO" — encaminhar para candidatos recusados
 
 ---
 
@@ -138,13 +133,15 @@ Retorne APENAS o JSON abaixo, sem nenhum texto antes ou depois:
 
 {
   "resultado": "APROVADO" ou "REPROVADO",
-  "score_total": [número inteiro de 0 a 10],
+  "eliminado_d1": true ou false,
+  "motivo_d1": "[se eliminado_d1: critério eliminatório que falhou, em 1 linha | senão: null]",
+  "score_total": [número inteiro de 0 a 10 — SEMPRE preenchido, mesmo se eliminado em D1],
   "score_d2": [0, 1, 2, 3 ou 4],
   "score_d3": [0, 1, 2 ou 3],
   "score_d4": [0, 1, 2 ou 3],
-  "motivo_recusa_asana": "[se REPROVADO: um dos 8 valores exatos abaixo | se APROVADO: null]",
-  "pontos_fortes": "[se APROVADO: 2 a 3 pontos em 1 parágrafo curto | se REPROVADO: null]",
-  "pontos_atencao": "[se APROVADO: 1 a 2 itens que o recrutador deve aprofundar | se REPROVADO: null]",
+  "motivo_recusa_asana": "[se REPROVADO: um dos 8 valores exatos abaixo (se eliminado em D1, use o motivo correspondente ao critério; senão use 'Perfil fora do esperado') | se APROVADO: null]",
+  "pontos_fortes": "[se APROVADO: 2 a 3 pontos em 1 parágrafo curto | senão: null]",
+  "pontos_atencao": "[se APROVADO: 1 a 2 itens que o recrutador deve aprofundar | senão: null]",
   "comentario_asana": "[texto completo conforme estrutura abaixo]"
 }
 
@@ -184,11 +181,11 @@ D2 Técnico: X/4 — [observação em 1 linha]
 D3 Fit cultural: X/3 — [observação em 1 linha]
 D4 Pretensão: X/3 — R$ X.XXX declarado / budget R$ X.XXX
 
-**Se REPROVADO (score <= 6):**
+**Se REPROVADO (eliminado em D1 OU score <= 6):**
 [TRIAGEM IA] Score: X/10
 Resultado: Reprovado
 
-Motivo principal: [motivo em 1 linha direta]
+Motivo principal: [se eliminado em D1, descreva o critério eliminatório que falhou; senão, a dimensão mais fraca]
 D2 Técnico: X/4 — [observação em 1 linha]
 D3 Fit cultural: X/3 — [observação em 1 linha]
 D4 Pretensão: X/3 — R$ X.XXX declarado / budget R$ X.XXX

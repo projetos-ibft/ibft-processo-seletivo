@@ -55,8 +55,7 @@ async function moverPara(taskGid, destinoKey, dryRun) {
 }
 
 function montarLinha({ id, task, dados, vagaInfo, r, statusAtual }) {
-  const reprovadoD1 = r.resultado === 'REPROVADO_D1';
-  const d1 = reprovadoD1 ? `Reprovado: ${r.motivo_d1 || ''}`.trim() : 'Passou';
+  const d1 = r.eliminado_d1 ? `Reprovado: ${r.motivo_d1 || ''}`.trim() : 'Passou';
   const desvio = dados.pretensao != null && vagaInfo.budget != null
     ? dados.pretensao - vagaInfo.budget
     : '';
@@ -232,7 +231,7 @@ async function processarTarefa(taskGid, opts = {}) {
   console.log(`[TRIAGEM] Resultado IA: ${r.resultado} | Score: ${r.score_total ?? '—'}/10`);
 
   // Destino
-  const aprovado = r.resultado === 'APROVADO' && (r.score_total ?? 0) >= 7;
+  const aprovado = r.resultado === 'APROVADO' && !r.eliminado_d1 && (r.score_total ?? 0) >= 7;
   const destinoKey = aprovado ? 'em_analise_humano' : 'recusados';
   const statusAtual = FIELDS.destinos[destinoKey]._nome_secao;
 
