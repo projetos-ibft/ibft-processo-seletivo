@@ -2,7 +2,7 @@
 
 ```
 Rodada: mai-26
-Última atualização: 2026-05-27
+Última atualização: 2026-06-09
 Responsável: Charles Dias (RH)
 AVISO: Se a data acima estiver há mais de 7 dias, notificar Charles antes de processar.
 ```
@@ -51,6 +51,7 @@ Os valores abaixo são os nomes exatos dos campos de múltipla escolha no formul
 - Vendedor (3 vagas)
 - Gestor de Comunidade
 - Analista de Suporte e Atendimento
+- Analista de Dados
 ```
 
 ---
@@ -281,6 +282,40 @@ Os valores abaixo são os nomes exatos dos campos de múltipla escolha no formul
 
 ---
 
+### Analista de Dados
+
+**Função:** Garantir a integridade dos dados de marketing do IBFT e do Onion — implementando e auditando toda a estrutura de rastreamento, construindo dashboards e conduzindo análises que apoiam as decisões estratégicas do time. O profissional trabalha na interseção entre tecnologia e marketing digital, garantindo que os números usados para otimizar campanhas sejam confiáveis.
+
+**Responsabilidades:**
+- Implementar e gerenciar tags de conversão e eventos via Google Tag Manager em sites e landing pages
+- Configurar e manter pixels de conversão do Meta Ads e Google Ads
+- Realizar QA constante para identificar quebras no rastreamento ou discrepâncias entre plataformas
+- Construir, manter e evoluir dashboards no Looker Studio com foco em funis de marketing e performance de campanhas
+- Conectar múltiplas fontes de dados (Meta Ads, Google Ads, planilhas, bancos de dados) em painéis centralizados
+- Conduzir análises pontuais para responder perguntas de negócio e apoiar decisões estratégicas
+- Configurar e manter fluxos de automação via N8N para coleta, tratamento e distribuição de dados
+- Integrar APIs de plataformas de mídia para consolidar dados em painéis centralizados
+
+**Requisitos obrigatórios:**
+- Experiência com rastreamento de conversões e Google Tag Manager
+- Domínio de Looker Studio para criação de dashboards
+- Conhecimento de SQL e lógica de programação
+- Familiaridade com Meta Ads e Google Ads (estrutura de tags e pixels)
+- Disponibilidade para trabalho presencial em SJC
+
+**Requisito técnico mínimo eliminatório:** Ausência de experiência com rastreamento de conversões e Google Tag Manager = eliminado diretamente. Candidato que não sabe o que é GTM ou nunca configurou eventos de conversão não atende o requisito central do cargo.
+
+**Portfólio obrigatório:** Não.
+
+**Diferenciais desejáveis:**
+- Google Analytics 4 (GA4) e protocolo HTTP
+- N8N ou outras ferramentas de automação de dados
+- Python, Power BI ou Docker
+- Experiência com APIs de mídia (Meta Ads API, Google Ads API)
+- JavaScript e lógica de programação avançada
+
+---
+
 ## 4. Budgets e critérios de corte
 
 O agente usa estes valores para o critério eliminatório de pretensão salarial e para o cálculo da Dimensão 4 (D4).
@@ -297,6 +332,7 @@ O agente usa estes valores para o critério eliminatório de pretensão salarial
 | Vendedor | R$ 2.000 | R$ 3.500 | até R$ 2.750 | R$ 2.751 a R$ 3.500 |
 | Gestor de Comunidade | R$ 1.621 | R$ 3.121 | até R$ 2.371 | R$ 2.372 a R$ 3.121 |
 | Analista de Suporte e Atendimento | R$ 2.000 | R$ 3.500 | até R$ 2.750 | R$ 2.751 a R$ 3.500 |
+| Analista de Dados | R$ 8.000 (teto da faixa R$ 5.000–8.000) | R$ 9.500 | até R$ 8.750 | R$ 8.751 a R$ 9.500 |
 
 ---
 
@@ -509,20 +545,18 @@ O agente usa estes GIDs para mover tarefas entre seções via API.
 
 | Seção | GID |
 |---|---|
-| 👤 Candidaturas Recebidas | `1209988064308563` |
-| 🔍 Em Análise (IA) | `1209988064308567` |
-| 🔍 Em Análise (Humano) | `1215165209166187` |
-| 🗣️Contato inicial | `1209988064308570` |
-| 🖋️ Desafio | `1209988064308571` |
-| 🖋️ Avaliar Desafio | `1210056677721076` |
-| 📞 Entrevista | `1209988064308572` |
-| ⏳ Em Decisão Final | `1215165209166197` |
-| 📩 Aprovado (Aguardando Início) | `1215165140295358` |
-| 🧭 Onboarding - Treinamento | `1209988064308574` |
-| 🎉 Contratação Concluída | `1210098291964236` |
-| ❌Candidatos recusados | `1209995110335850` |
-
-**Nota:** Os nomes acima são exatamente como retornados pela API do Asana (preserva variações de espaço/capitalização das seções reais). O código deve usar `config/asana-ids.json` como fonte canônica — esta tabela é apenas referência rápida.
+| 👤 Candidaturas Recebidas | `1209988312496749` |
+| 🔍 Em Análise (IA) | A obter via API |
+| 🔍 Em Análise (Humano) | A obter via API |
+| 🗣️ Contato Inicial | A obter via API |
+| 🖋️ Desafio | A obter via API |
+| 🖋️ Avaliar Desafio | A obter via API |
+| 📞 Entrevista | A obter via API |
+| ⏳ Em Decisão Final | A obter via API |
+| 📩 Aprovado (Aguardando Início) | A obter via API |
+| 🧭 Onboarding / Treinamento | A obter via API |
+| 🎉 Contratação Concluída | A obter via API |
+| ❌ Candidatos Recusados | A obter via API |
 
 **Nota:** os GIDs das seções são obtidos com uma única chamada no setup do projeto:
 ```
