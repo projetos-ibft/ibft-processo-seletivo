@@ -31,8 +31,34 @@ function splitBodyFooter(notes) {
 }
 
 function extractVaga(footer) {
-  const m = footer.match(/\[Processos Seletivos\]\s*(.+?)\s*\(\w{3}-\d{2}\)/);
+  // O rodapé real do Asana usa "Processo Seletivo" (singular, sem "s"):
+  //   "Esta tarefa foi enviada através de 🟢[Processo Seletivo] Copywriter (mai-26)"
+  const m = footer.match(/\[Processo Seletivo\]\s*(.+?)\s*\(\w{3}-\d{2}\)/);
   return m ? m[1].trim() : null;
+}
+
+// Normaliza um nome de vaga para comparação: remove o sufixo de rodada
+// "(mai-26)" e a anotação "(3 vagas)", tira espaços e baixa a caixa. Usado
+// para comparar a vaga do rodapé (fonte confiável) com a vaga declarada pelo
+// candidato no dropdown, que pode vir com o sufixo da rodada.
+function normalizeVaga(s) {
+  if (!s) return null;
+  return s
+    .replace(/\s*\(\d+\s+vagas?\)\s*$/i, '') // "(3 vagas)"
+    .replace(/\s*\(\w{3}-\d{2}\)\s*$/i, '') // "(mai-26)" / "(jun-26)"
+    .trim()
+    .toLowerCase();
+}
+
+// Divergência: o candidato acessou o formulário de uma vaga (rodapé) mas
+// declarou outra no campo "Para qual vaga você está aplicando?". Só acusa
+// divergência quando os dois valores existem e são diferentes — campo em
+// branco não bloqueia a triagem.
+function vagasDivergem(vagaRodape, vagaDeclarada) {
+  const a = normalizeVaga(vagaRodape);
+  const b = normalizeVaga(vagaDeclarada);
+  if (!a || !b) return false;
+  return a !== b;
 }
 
 function parseQAPairs(body) {
@@ -86,6 +112,10 @@ function parseForm(notes) {
   const vaga = extractVaga(footer);
   const pairs = parseQAPairs(body);
 
+  // Vaga que o candidato declarou no dropdown (pode divergir do rodapé).
+  const vagaDeclaradaPair = findPair(pairs, VAGA_DROPDOWN_LABEL);
+  const vagaDeclarada = vagaDeclaradaPair ? vagaDeclaradaPair.answer : null;
+
   const fixed = {};
   for (const [key, label] of Object.entries(FIXED_LABELS)) {
     const pair = findPair(pairs, label);
@@ -118,6 +148,7 @@ function parseForm(notes) {
 
   return {
     vaga,
+    vaga_declarada: vagaDeclarada,
     nome: fixed.nome,
     email: fixed.email,
     whatsapp: fixed.whatsapp,
@@ -138,6 +169,8 @@ module.exports = {
   parseForm,
   parseQAPairs,
   extractVaga,
+  normalizeVaga,
+  vagasDivergem,
   parsePretensao,
   parsePresencial,
   splitBodyFooter,

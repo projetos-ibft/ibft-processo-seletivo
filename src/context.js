@@ -39,14 +39,21 @@ function validateContextFreshness(ctx, maxDays = 7) {
 }
 
 function parseVagasAtivas(text) {
-  const m = text.match(/### Vagas ativas desta rodada[\s\S]*?```([\s\S]*?)```/);
-  if (!m) throw new Error('CONTEXT.md: bloco de vagas ativas não encontrado');
-  return m[1]
+  // A seção "Vagas ativas" pode conter mais de um bloco de código (ex.: o
+  // exemplo do rodapé do formulário antes da lista). Selecionar o bloco que
+  // de fato é a lista — o que tem itens iniciados por "- ".
+  const sec = text.match(/### Vagas ativas desta rodada([\s\S]*?)(?=^## )/m);
+  if (!sec) throw new Error('CONTEXT.md: seção de vagas ativas não encontrada');
+  const blocks = [...sec[1].matchAll(/```([\s\S]*?)```/g)].map(b => b[1]);
+  const listBlock = blocks.find(b => /^\s*-\s+/m.test(b));
+  if (!listBlock) throw new Error('CONTEXT.md: lista de vagas ativas não encontrada');
+  return listBlock
     .split('\n')
     .map(line =>
       line
         .replace(/^\s*-\s*/, '')
-        .replace(/\s*\(\d+\s+vagas?\)\s*/i, '')
+        .replace(/\s*\(\d+\s+vagas?\)\s*$/i, '') // "(3 vagas)"
+        .replace(/\s*\(\w{3}-\d{2}\)\s*$/i, '') // "(mai-26)" / "(jun-26)"
         .trim()
     )
     .filter(Boolean);

@@ -169,6 +169,37 @@ async function processarTarefa(taskGid, opts = {}) {
   const dados = parser.parseForm(task.notes);
   console.log(`[TRIAGEM] Candidato: ${dados.nome} | Vaga: ${dados.vaga} | Pretensão: R$ ${dados.pretensao}`);
 
+  // Passo 6.5: regra de divergência. O candidato acessou o formulário de uma
+  // vaga (rodapé, fonte confiável) mas declarou outra no dropdown. Não processa
+  // a triagem: recusa com "Perfil fora do esperado" e deixa o RH reavaliar.
+  if (parser.vagasDivergem(dados.vaga, dados.vaga_declarada)) {
+    console.log(
+      `[TRIAGEM] Divergência: rodapé="${dados.vaga}" vs declarada="${dados.vaga_declarada}"`
+    );
+    const msg =
+      `[TRIAGEM IA] Inconsistência no formulário\n` +
+      `Resultado: Encaminhado para Candidatos Recusados\n\n` +
+      `Motivo: O candidato acessou o formulário da vaga "${dados.vaga}" mas ` +
+      `declarou estar aplicando para "${dados.vaga_declarada}".\n` +
+      `O processo não foi iniciado. Se for um erro de preenchimento, o RH pode ` +
+      `mover a tarefa manualmente para 🔍 Em Análise (Humano) para reavaliação.`;
+    await postComment(taskGid, msg, dryRun);
+
+    const motivoGid = FIELDS.motivo_recusa_opcoes['Perfil fora do esperado'];
+    if (dryRun) {
+      console.log('[DRY-RUN] Setaria ⛔[RH] Motivo da recusa = "Perfil fora do esperado"');
+    } else {
+      await asana.updateCustomFieldEnum(taskGid, FIELDS.campos.motivo_recusa, motivoGid);
+    }
+
+    await moverPara(taskGid, 'recusados', dryRun);
+    return {
+      status: 'divergencia_formulario',
+      vaga: dados.vaga,
+      vaga_declarada: dados.vaga_declarada,
+    };
+  }
+
   // Passo 7: identificar vaga
   const vagaInfo = vagas[dados.vaga];
   if (!vagaInfo) {

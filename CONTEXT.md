@@ -42,16 +42,24 @@ Missão real, não slogan. Velocidade com estrutura. Autonomia com responsabilid
 
 Os valores abaixo são os nomes exatos dos campos de múltipla escolha no formulário Asana. O agente deve identificar a vaga usando correspondência exata com esses nomes.
 
+O rodapé gerado pelo Asana ao final de cada tarefa tem este formato exato:
 ```
-- Copywriter
-- Designer e Web Designer
-- Gestor de Tráfego
-- Social Media
-- Supervisor Comercial
-- Vendedor (3 vagas)
-- Gestor de Comunidade
-- Analista de Suporte e Atendimento
-- Analista de Dados
+Esta tarefa foi enviada através de 🟢[Processo Seletivo] Nome da Vaga (mai-26)
+```
+Atenção: o texto é "Processo Seletivo" (sem "s" no final). Usar esta string na regex de extração.
+
+**Regra de divergência:** após extrair a vaga pelo rodapé, comparar com o campo "Para qual vaga você está aplicando?" da descrição. Se os dois valores forem diferentes, não processar a triagem — mover para ❌ Candidatos Recusados com motivo "Perfil fora do esperado" e comentário explicando a inconsistência.
+
+```
+- Copywriter (mai-26)
+- Designer e Web Designer (mai-26)
+- Gestor de Tráfego (mai-26)
+- Social Media (mai-26)
+- Supervisor Comercial (mai-26)
+- Vendedor (mai-26)
+- Gestor de Comunidade (mai-26)
+- Analista de Suporte e Atendimento (mai-26)
+- Analista de Dados (jun-26)
 ```
 
 ---
