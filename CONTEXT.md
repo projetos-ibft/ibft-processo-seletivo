@@ -2,7 +2,7 @@
 
 ```
 Rodada: mai-26
-Última atualização: 2026-06-09
+Última atualização: 2026-08-12
 Responsável: Charles Dias (RH)
 AVISO: Se a data acima estiver há mais de 7 dias, notificar Charles antes de processar.
 ```
@@ -305,17 +305,17 @@ Atenção: o texto é "Processo Seletivo" (sem "s" no final). Usar esta string n
 - Integrar APIs de plataformas de mídia para consolidar dados em painéis centralizados
 
 **Requisitos obrigatórios:**
-- Experiência com rastreamento de conversões e Google Tag Manager
-- Domínio de Looker Studio para criação de dashboards
+- Domínio de Looker Studio (ou ferramenta equivalente, ex.: Power BI) para criação de dashboards
 - Conhecimento de SQL e lógica de programação
-- Familiaridade com Meta Ads e Google Ads (estrutura de tags e pixels)
 - Disponibilidade para trabalho presencial em SJC
 
-**Requisito técnico mínimo eliminatório:** Ausência de experiência com rastreamento de conversões e Google Tag Manager = eliminado diretamente. Candidato que não sabe o que é GTM ou nunca configurou eventos de conversão não atende o requisito central do cargo.
+**Requisito técnico mínimo eliminatório:** Ausência de conhecimento de SQL E ausência de experiência prática construindo dashboards (Looker Studio, Power BI ou ferramenta equivalente) = eliminado diretamente. Esses dois são a base do cargo. Experiência com Google Tag Manager, rastreamento de conversões e pixels de conversão (Meta Ads/Google Ads) NÃO é eliminatória — é um diferencial desejável. A ausência de GTM/rastreamento pode reduzir a nota da Dimensão 2 (D2), mas nunca deve, isoladamente, zerar o candidato ou gerar reprovação automática.
 
 **Portfólio obrigatório:** Não.
 
 **Diferenciais desejáveis:**
+- Experiência com rastreamento de conversões e Google Tag Manager
+- Familiaridade com Meta Ads e Google Ads (estrutura de tags e pixels)
 - Google Analytics 4 (GA4) e protocolo HTTP
 - N8N ou outras ferramentas de automação de dados
 - Python, Power BI ou Docker
