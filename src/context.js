@@ -64,7 +64,7 @@ function parseBudgets(text) {
   if (!section) throw new Error('CONTEXT.md: seção 4 (Budgets) não encontrada');
 
   const budgets = {};
-  const lineRe = /^\|\s*([^|]+?)\s*\|\s*R\$\s*([\d.,]+)\s*\|/gm;
+  const lineRe = /^\|\s*([^|]+?)\s*\|\s*R\$\s*([\d.,]+)[^|]*\|/gm;
   let m;
   while ((m = lineRe.exec(section[0])) !== null) {
     const vaga = m[1].trim();
