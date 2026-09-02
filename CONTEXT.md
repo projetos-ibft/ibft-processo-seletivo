@@ -2,7 +2,7 @@
 
 ```
 Rodada: mai-26
-Última atualização: 2026-08-12
+Última atualização: 2026-09-02
 Responsável: Charles Dias (RH)
 AVISO: Se a data acima estiver há mais de 7 dias, notificar Charles antes de processar.
 ```
@@ -60,6 +60,7 @@ Atenção: o texto é "Processo Seletivo" (sem "s" no final). Usar esta string n
 - Gestor de Comunidade (mai-26)
 - Analista de Suporte e Atendimento (mai-26)
 - Analista de Dados (jun-26)
+- Analista de Sucesso do Cliente — Pleno (set-26)
 ```
 
 ---
@@ -324,6 +325,41 @@ Atenção: o texto é "Processo Seletivo" (sem "s" no final). Usar esta string n
 
 ---
 
+### Analista de Sucesso do Cliente — Pleno
+
+**Função:** Acompanhar e aprimorar a experiência dos clientes ao longo de toda a jornada dentro do Onion — desde o onboarding até o uso contínuo do produto. O profissional é o principal elo entre os assinantes e o produto, responsável por identificar padrões, propor melhorias estruturadas e garantir que cada problema identificado vire melhoria real na experiência da base.
+
+**Responsabilidades:**
+- Acompanhar a jornada do cliente desde o onboarding até o uso contínuo do produto
+- Identificar gargalos, dificuldades, dúvidas recorrentes e pontos de atrito na experiência
+- Estruturar e aprimorar processos de onboarding, acompanhamento, engajamento e retenção
+- Monitorar indicadores como NPS, CSAT, churn, retenção, ativação e engajamento
+- Criar ações para clientes com baixo engajamento ou sinais de possível abandono
+- Realizar pesquisas e conversas com clientes para entender suas necessidades e percepção sobre o produto
+- Levar a voz do cliente para Suporte, Produto, Marketing, Comercial e Conteúdo
+- Propor melhorias em processos, comunicação, produto e experiência e acompanhar seus resultados
+
+**Requisitos obrigatórios:**
+- Experiência prévia em Customer Success, Customer Experience ou áreas relacionadas
+- Conhecimento de métricas e indicadores de CS: NPS, CSAT, churn, retenção e engajamento
+- Capacidade de analisar dados e feedbacks e transformá-los em ações concretas
+- Excelente comunicação escrita e verbal
+- Organização para acompanhar diferentes demandas e projetos simultaneamente
+- Perfil proativo — identifica problemas e propõe soluções sem esperar ser acionado
+- Disponibilidade para trabalho presencial em SJC
+
+**Requisito técnico mínimo eliminatório:** Ausência de experiência prévia em Customer Success ou Customer Experience = eliminado diretamente.
+
+**Portfólio obrigatório:** Não.
+
+**Diferenciais desejáveis:**
+- Experiência com produtos digitais, educação online, comunidades ou negócios de recorrência
+- Experiência com CRM e plataformas de atendimento
+- Conhecimento em construção de jornadas e automações de relacionamento
+- Experiência com estratégias de engajamento, retenção e redução de churn
+
+---
+
 ## 4. Budgets e critérios de corte
 
 O agente usa estes valores para o critério eliminatório de pretensão salarial e para o cálculo da Dimensão 4 (D4).
@@ -341,6 +377,7 @@ O agente usa estes valores para o critério eliminatório de pretensão salarial
 | Gestor de Comunidade | R$ 1.621 | R$ 3.121 | até R$ 2.371 | R$ 2.372 a R$ 3.121 |
 | Analista de Suporte e Atendimento | R$ 2.000 | R$ 3.500 | até R$ 2.750 | R$ 2.751 a R$ 3.500 |
 | Analista de Dados | R$ 8.000 (teto da faixa R$ 5.000–8.000) | R$ 9.500 | até R$ 8.750 | R$ 8.751 a R$ 9.500 |
+| Analista de Sucesso do Cliente — Pleno | R$ 4.000 | R$ 5.500 | até R$ 4.750 | R$ 4.751 a R$ 5.500 |
 
 ---
 
