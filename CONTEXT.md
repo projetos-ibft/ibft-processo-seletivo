@@ -60,7 +60,7 @@ Atenção: o texto é "Processo Seletivo" (sem "s" no final). Usar esta string n
 - Gestor de Comunidade (mai-26)
 - Analista de Suporte e Atendimento (mai-26)
 - Analista de Dados (jun-26)
-- Analista de Sucesso do Cliente — Pleno (set-26)
+- Analista de Sucesso do Cliente - Pleno (set-26)
 ```
 
 ---
@@ -325,7 +325,7 @@ Atenção: o texto é "Processo Seletivo" (sem "s" no final). Usar esta string n
 
 ---
 
-### Analista de Sucesso do Cliente — Pleno
+### Analista de Sucesso do Cliente - Pleno
 
 **Função:** Acompanhar e aprimorar a experiência dos clientes ao longo de toda a jornada dentro do Onion — desde o onboarding até o uso contínuo do produto. O profissional é o principal elo entre os assinantes e o produto, responsável por identificar padrões, propor melhorias estruturadas e garantir que cada problema identificado vire melhoria real na experiência da base.
 
@@ -377,7 +377,7 @@ O agente usa estes valores para o critério eliminatório de pretensão salarial
 | Gestor de Comunidade | R$ 1.621 | R$ 3.121 | até R$ 2.371 | R$ 2.372 a R$ 3.121 |
 | Analista de Suporte e Atendimento | R$ 2.000 | R$ 3.500 | até R$ 2.750 | R$ 2.751 a R$ 3.500 |
 | Analista de Dados | R$ 8.000 (teto da faixa R$ 5.000–8.000) | R$ 9.500 | até R$ 8.750 | R$ 8.751 a R$ 9.500 |
-| Analista de Sucesso do Cliente — Pleno | R$ 4.000 | R$ 5.500 | até R$ 4.750 | R$ 4.751 a R$ 5.500 |
+| Analista de Sucesso do Cliente - Pleno | R$ 4.000 | R$ 5.500 | até R$ 4.750 | R$ 4.751 a R$ 5.500 |
 
 ---
 
